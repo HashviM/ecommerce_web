@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cute Fashion — Bespoke Tailoring</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@100;300;400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- CART DRAWER OVERLAY -->
+  <div class="cart-drawer-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+  <!-- CART DRAWER -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="close-cart" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="empty-cart">Your cart is beautifully empty</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span
+          style="font-size:0.8rem;letter-spacing:0.1em;font-family:'Josefin Sans';font-weight:300;align-self:center;">TOTAL</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+      <button class="btn-primary" style="width:100%;text-align:center;border:none;" onclick="checkout()">Proceed to
+        Checkout</button>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- PROMO BANNER -->
+  <div class="promo-banner">✦ Free Consultation for Orders · Express Delivery Available · 100% Hand-Stitched ✦</div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">CUTE <span>FASHION</span></a>
+    <div class="nav-links">
+      <a href="#catalog">Catalog</a>
+      <a href="#readymade">Ready to Wear</a>
+      <a href="#measurements">Measure Guide</a>
+      <a href="#process">Our Process</a>
+      <a href="#order">Custom Order</a>
+      <a href="#contact">Contact</a>
+      <a href="#" class="nav-cta cart-btn" onclick="openCart(); return false;">
+        🛍 Cart <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+    <button class="mobile-menu-btn" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Attur, Salem</div>
+      <h1 class="hero-title">
+        Crafted<br>to <em>Fit</em><br>Your Story
+      </h1>
+      <p class="hero-subtitle">Custom stitching designed for you — perfect fit, beautiful finish, every time.</p>
+      <div class="hero-actions">
+        <a href="#catalog" class="btn-primary">Browse Designs</a>
+        <a href="#order" class="btn-outline">Place Custom Order</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-val">2400+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div>
+          <div class="stat-val">13+</div>
+          <div class="stat-label">Years of Craft</div>
+        </div>
+        <div>
+          <div class="stat-val">100%</div>
+          <div class="stat-label">Hand-Stitched</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-fabric">
+        <div class="fabric-strip">Premium Cotton</div>
+        <div class="fabric-strip">Silk & Linen</div>
+        <div class="fabric-strip">Elegant Georgette</div>
+        <div class="fabric-strip">Sheer Organza</div>
+        <div class="fabric-strip">Velvet & Brocade</div>
+      </div>
+      <div class="hero-badge">
+        <span>Boutique</span>
+        <strong>✦</strong>
+        <span>Design</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES TICKER -->
+  <div id="services-strip">
+    <div class="services-ticker">
+      <span>Bridal Blouses </span><span class="dot">✦</span>
+      <span>Designer Blouses</span><span class="dot">✦</span>
+      <span>Bridal Lehenga</span><span class="dot">✦</span>
+      <span>Half Saree Stitching</span><span class="dot">✦</span>
+      <span>Designer Kurtis</span><span class="dot">✦</span>
+      <span>Party Wear Dresses</span><span class="dot">✦</span>
+      <span>Anarkali Dresses</span><span class="dot">✦</span>
+      <span>Kids Frocks</span><span class="dot">✦</span>
+      <span>Festive Wear</span><span class="dot">✦</span>
+      <span>Indo-Western</span><span class="dot">✦</span>
+      <span>Bridal Blouses</span><span class="dot">✦</span>
+      <span>Designer Blouses</span><span class="dot">✦</span>
+      <span>Bridal Lehenga</span><span class="dot">✦</span>
+      <span>Half Saree Stitching</span><span class="dot">✦</span>
+      <span>Designer Kurtis</span><span class="dot">✦</span>
+      <span>Party Wear Dresses</span><span class="dot">✦</span>
+      <span>Anarkali Dresses</span><span class="dot">✦</span>
+      <span>Kids Frocks</span><span class="dot">✦</span>
+      <span>Custom Dress Designs</span><span class="dot">✦</span>
+      <span>Alterations & Fittings</span><span class="dot">✦</span>
+    </div>
+  </div>
+
+  <!-- CATALOG -->
+  <section id="catalog">
+    <div class="section-tag">Our Designs</div>
+    <h2 class="section-title reveal">Our <em>Designs</em></h2>
+    <p style="font-size:0.75rem;line-height:2;color:#9A8F85;max-width:500px;letter-spacing:0.08em;" class="reveal">
+      Explore some of our popular stitching styles.
+      Every design can be customized with your preferred fabric, fit, and finishing.</p>
+    <div class="filter-tabs reveal">
+      <button class="filter-tab active" onclick="filterCatalog('all', this)">All</button>
+      <button class="filter-tab" onclick="filterCatalog('kurtis', this)">Kurtis</button>
+      <button class="filter-tab" onclick="filterCatalog('maxi', this)">Maxi</button>
+      <button class="filter-tab" onclick="filterCatalog('salwar', this)">Salwar</button>
+    </div>
+    <div class="catalog-grid" id="catalogGrid"></div>
+  </section>
+
+  <!-- READY MADE -->
+  <section id="readymade">
+    <div class="section-tag">Ready to Wear</div>
+    <h2 class="section-title reveal">Off-the-Rack, <em>On Point</em></h2>
+    <p style="font-size:0.75rem;line-height:2;color:#9A8F85;max-width:500px;letter-spacing:0.08em;" class="reveal">
+      Carefully crafted ready-made garments — perfect proportions, immediate availability.</p>
+    <div class="readymade-grid reveal" id="readymadeGrid"></div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="section-tag">How It Works</div>
+    <h2 class="section-title reveal">From <em>Vision</em> to Wardrobe</h2>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="process-icon">✦</div>
+        <div class="process-step-num">01</div>
+        <div class="process-step-name">Consult</div>
+        <div class="process-step-desc">Book a free consultation to discuss your style vision and preferences.</div>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-icon">📐</div>
+        <div class="process-step-num">02</div>
+        <div class="process-step-name">Measure</div>
+        <div class="process-step-desc">Precise measurements taken by our master tailors or guided self-measure.</div>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-icon">🧵</div>
+        <div class="process-step-num">03</div>
+        <div class="process-step-name">Craft</div>
+        <div class="process-step-desc">Hand-stitched by artisans with 20+ years of experience.</div>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-icon">🔍</div>
+        <div class="process-step-num">04</div>
+        <div class="process-step-name">Fit Trial</div>
+        <div class="process-step-desc">One complimentary fitting session — we adjust until it's perfect.</div>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-icon">🎁</div>
+        <div class="process-step-num">05</div>
+        <div class="process-step-name">Deliver</div>
+        <div class="process-step-desc">Beautifully packaged and delivered to your doorstep.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEASUREMENT GUIDE -->
+  <section id="measurements">
+    <div class="section-tag">Measurement Guide</div>
+    <h2 class="section-title reveal">Get Your <em>Perfect Fit</em></h2>
+    <div class="measurement-layout">
+      <div>
+        <div class="measure-steps">
+          <div class="measure-step reveal">
+            <div class="step-num">01</div>
+            <div>
+              <div class="step-name">Chest / Bust</div>
+              <div class="step-desc">Wrap the tape around the fullest part of your chest, keeping it horizontal and
+                parallel to the floor. Keep two fingers under the tape for comfort.</div>
+            </div>
+          </div>
+          <div class="measure-step reveal">
+            <div class="step-num">02</div>
+            <div>
+              <div class="step-name">Waist</div>
+              <div class="step-desc">Measure around the narrowest part of your natural waist, typically about 1 inch
+                above your navel. Breathe normally, don't suck in.</div>
+            </div>
+          </div>
+          <div class="measure-step reveal">
+            <div class="step-num">03</div>
+            <div>
+              <div class="step-name">Hips</div>
+              <div class="step-desc">Stand with feet together and measure around the fullest part of your hips, usually
+                7–9 inches below the waist.</div>
+            </div>
+          </div>
+          <div class="measure-step reveal">
+            <div class="step-num">04</div>
+            <div>
+              <div class="step-name">Shoulder Width</div>
+              <div class="step-desc">Measure from the outer edge of one shoulder to the outer edge of the other, across
+                the back.</div>
+            </div>
+          </div>
+          <div class="measure-step reveal">
+            <div class="step-num">05</div>
+            <div>
+              <div class="step-name">Length</div>
+              <div class="step-desc">For tops: from the highest shoulder point to desired hem. For trousers: from the
+                natural waist to the floor.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="measure-figure reveal">
+          <svg class="human-silhouette" viewBox="0 0 260 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="130" cy="48" r="28" fill="#2A2A2A" opacity="0.85" />
+            <rect x="122" y="74" width="16" height="18" fill="#2A2A2A" opacity="0.85" />
+            <path
+              d="M90 92 Q72 97 68 125 L65 210 Q65 222 78 222 L182 222 Q195 222 195 210 L192 125 Q188 97 170 92 L158 90 Q144 87 130 87 Q116 87 102 90 Z"
+              fill="#2A2A2A" opacity="0.85" />
+            <path d="M90 94 Q72 98 60 115 L48 188 Q45 202 55 206 L68 204 L80 132 Z" fill="#2A2A2A" opacity="0.65" />
+            <path d="M170 94 Q188 98 200 115 L212 188 Q215 202 205 206 L192 204 L180 132 Z" fill="#2A2A2A"
+              opacity="0.65" />
+            <path d="M98 222 L88 360 Q86 374 98 374 L118 374 L130 240 Z" fill="#2A2A2A" opacity="0.75" />
+            <path d="M162 222 L172 360 Q174 374 162 374 L142 374 L130 240 Z" fill="#2A2A2A" opacity="0.75" />
+            <line x1="68" y1="122" x2="192" y2="122" stroke="#C9A84C" stroke-width="1" stroke-dasharray="4,3"
+              opacity="0.8" />
+            <line x1="20" y1="122" x2="65" y2="122" stroke="#C9A84C" stroke-width="0.8" opacity="0.5" />
+            <text x="2" y="119" fill="#C9A84C" font-size="7.5" font-family="sans-serif" font-weight="bold">CHEST</text>
+            <line x1="67" y1="168" x2="193" y2="168" stroke="#C9A84C" stroke-width="1" stroke-dasharray="4,3"
+              opacity="0.8" />
+            <line x1="20" y1="168" x2="64" y2="168" stroke="#C9A84C" stroke-width="0.8" opacity="0.5" />
+            <text x="2" y="165" fill="#C9A84C" font-size="7.5" font-family="sans-serif" font-weight="bold">WAIST</text>
+            <line x1="66" y1="210" x2="194" y2="210" stroke="#C9A84C" stroke-width="1" stroke-dasharray="4,3"
+              opacity="0.8" />
+            <line x1="20" y1="210" x2="63" y2="210" stroke="#C9A84C" stroke-width="0.8" opacity="0.5" />
+            <text x="7" y="207" fill="#C9A84C" font-size="7.5" font-family="sans-serif" font-weight="bold">HIPS</text>
+            <line x1="90" y1="88" x2="170" y2="88" stroke="#C9A84C" stroke-width="1" opacity="0.9" />
+            <line x1="90" y1="84" x2="90" y2="92" stroke="#C9A84C" stroke-width="1" />
+            <line x1="170" y1="84" x2="170" y2="92" stroke="#C9A84C" stroke-width="1" />
+            <text x="102" y="82" fill="#C9A84C" font-size="7.5" font-family="sans-serif"
+              font-weight="bold">SHOULDER</text>
+            <line x1="235" y1="20" x2="235" y2="374" stroke="#C9A84C" stroke-width="0.8" stroke-dasharray="3,4"
+              opacity="0.5" />
+            <line x1="230" y1="20" x2="240" y2="20" stroke="#C9A84C" stroke-width="1" opacity="0.6" />
+            <line x1="230" y1="374" x2="240" y2="374" stroke="#C9A84C" stroke-width="1" opacity="0.6" />
+            <text x="238" y="205" fill="#C9A84C" font-size="7.5" font-family="sans-serif" font-weight="bold"
+              transform="rotate(90,238,205)">HEIGHT</text>
+            <line x1="130" y1="242" x2="130" y2="374" stroke="#C9A84C" stroke-width="0.8" stroke-dasharray="3,3"
+              opacity="0.5" />
+            <text x="134" y="315" fill="#C9A84C" font-size="7" font-family="sans-serif" opacity="0.9">INSEAM</text>
+          </svg>
+        </div>
+        <div class="measure-form reveal">
+          <h3>Save My Measurements</h3>
+          <div class="unit-toggle">
+            <button class="unit-btn active" onclick="setUnit('cm', this)">Centimeters</button>
+            <button class="unit-btn" onclick="setUnit('in', this)">Inches</button>
+          </div>
+          <div class="form-grid">
+            <div class="form-group"><label>Chest / Bust</label><input type="number" placeholder="e.g. 96 cm"
+                id="m-chest"></div>
+            <div class="form-group"><label>Waist</label><input type="number" placeholder="e.g. 80 cm" id="m-waist">
+            </div>
+            <div class="form-group"><label>Hips</label><input type="number" placeholder="e.g. 98 cm" id="m-hips"></div>
+            <div class="form-group"><label>Shoulder</label><input type="number" placeholder="e.g. 42 cm"
+                id="m-shoulder"></div>
+            <div class="form-group"><label>Sleeve Length</label><input type="number" placeholder="e.g. 60 cm"
+                id="m-sleeve"></div>
+            <div class="form-group"><label>Inseam</label><input type="number" placeholder="e.g. 78 cm" id="m-inseam">
+            </div>
+          </div>
+          <button class="btn-primary" style="margin-top:1.5rem;border:none;width:100%;text-align:center;"
+            onclick="saveMeasurements()">Save Measurements</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER -->
+  <section id="order">
+    <div class="section-tag">Custom Order</div>
+    <h2 class="section-title reveal">Commission Your <em>Piece</em></h2>
+    <div class="order-layout">
+      <form class="order-form reveal" onsubmit="submitOrder(event)">
+        <div class="form-field"><label>Full Name</label><input type="text" placeholder="Your full name" required></div>
+        <div class="form-field"><label>Phone Number</label><input type="tel" placeholder="+91 98765 43210" required>
+        </div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+        <div class="form-field">
+          <label>Garment Type</label>
+          <select required>
+            <option value="">Select garment...</option>
+            <option>Sherwani</option>
+            <option>Kurta Pyjama</option>
+            <option>Formal Suit</option>
+            <option>Blazer</option>
+            <option>Lehenga</option>
+            <option>Salwar Kameez</option>
+            <option>Saree Blouse</option>
+            <option>Anarkali</option>
+            <option>Indo-Western</option>
+            <option>Other (Describe below)</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Occasion</label>
+          <select>
+            <option value="">Select occasion...</option>
+            <option>Wedding</option>
+            <option>Festival</option>
+            <option>Corporate</option>
+            <option>Casual</option>
+            <option>Party / Event</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Preferred Fabric Colour</label>
+          <div class="fabric-picker" id="fabricPicker">
+            <div class="fabric-swatch" style="background:#1a2438" title="Navy" onclick="selectFabric(this,'Navy Blue')">
+            </div>
+            <div class="fabric-swatch" style="background:#F5F0E8;border:1px solid #ddd" title="Ivory"
+              onclick="selectFabric(this,'Ivory')"></div>
+            <div class="fabric-swatch" style="background:#2D2D2D" title="Charcoal"
+              onclick="selectFabric(this,'Charcoal')"></div>
+            <div class="fabric-swatch" style="background:#5C1A1A" title="Wine" onclick="selectFabric(this,'Burgundy')">
+            </div>
+            <div class="fabric-swatch" style="background:#3D5240" title="Sage"
+              onclick="selectFabric(this,'Forest Green')"></div>
+            <div class="fabric-swatch" style="background:#D4A5A5" title="Blush"
+              onclick="selectFabric(this,'Blush Pink')"></div>
+            <div class="fabric-swatch" style="background:#C9A84C" title="Gold" onclick="selectFabric(this,'Gold')">
+            </div>
+            <div class="fabric-swatch" style="background:#4A3728" title="Brown"
+              onclick="selectFabric(this,'Chocolate Brown')"></div>
+            <div class="fabric-swatch" style="background:#1A1730" title="Royal Blue"
+              onclick="selectFabric(this,'Royal Blue')"></div>
+            <div class="fabric-swatch" style="background:#8B3A2A" title="Rust" onclick="selectFabric(this,'Rust')">
+            </div>
+            <div class="fabric-swatch" style="background:#2C1B47" title="Purple" onclick="selectFabric(this,'Plum')">
+            </div>
+            <div class="fabric-swatch"
+              style="background:repeating-linear-gradient(45deg,#1a2438,#1a2438 5px,#C9A84C 5px,#C9A84C 6px)"
+              onclick="selectFabric(this,'Navy & Gold Stripe')"></div>
+          </div>
+          <input type="hidden" id="selectedFabric">
+          <span id="fabricLabel"
+            style="font-size:0.6rem;color:#9A8F85;letter-spacing:0.1em;margin-top:0.5rem;display:block;"></span>
+        </div>
+        <div class="form-field"><label>Special Instructions</label><textarea rows="4"
+            placeholder="Embroidery details, style preferences, reference images, specific requirements..."></textarea>
+        </div>
+        <div class="form-field"><label>Required By</label><input type="date"></div>
+        <button type="submit" class="btn-primary" style="border:none;align-self:flex-start;">Place Order
+          Request</button>
+      </form>
+      <div class="order-summary reveal">
+        <div class="summary-title">Order Summary</div>
+        <div class="summary-item"><span>Base Stitching</span><span>₹1,200/- approx</span></div>
+        <div class="summary-item"><span>Premium Fabric (per metre)</span><span>₹800/- approx</span></div>
+        <div class="summary-item"><span>Embroidery (optional)</span><span>₹500/- approx</span></div>
+        <div class="summary-item"><span>Fitting Session</span><span style="color:#5C7A5A">Free</span></div>
+        <div class="summary-item total"><span>Estimated Starting From</span><span>₹2,000/- approx</span></div>
+        <div class="timeline-steps">
+          <div class="timeline-step">
+            <div class="timeline-icon">1</div>
+            <div class="timeline-text"><strong>Confirmation</strong>We call you within 24 hours to confirm details.
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-icon">2</div>
+            <div class="timeline-text"><strong>Measurement Visit</strong>We schedule a home visit or in-store
+              appointment.</div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-icon">3</div>
+            <div class="timeline-text"><strong>Crafting (7–21 days)</strong>Depends on complexity and fabric
+              availability.</div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-icon">4</div>
+            <div class="timeline-text"><strong>Delivery</strong>Home delivery or pickup — your choice.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="section-tag">Testimonials</div>
+    <h2 class="section-title reveal">Worn With <em>Pride</em></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">I ordered a custom salwar suit for my sister's wedding and I was completely blown
+          away. The fit was flawless and the embroidery was exactly what I had in mind. So many compliments on the day!
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div>
+            <div class="author-name">Ananya Krishnan</div>
+            <div class="author-title">Wedding Client · Coimbatore</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">I've been coming here for my kurtis for over 5 years and the quality never
+          disappoints. They understand my style perfectly and the stitching is always neat and precise. Truly my go-to
+          tailor!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">D</div>
+          <div>
+            <div class="author-name">Deepika Suresh</div>
+            <div class="author-title">Repeat Client · Salem</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">My bridal lehenga was an absolute dream. Every detail — the hand embroidery, the
+          silhouette, the finishing — was perfect. I felt like royalty on my wedding day. Thank you so much!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div>
+            <div class="author-name">Meenakshi Rajan</div>
+            <div class="author-title">Bridal Client · Trichy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTACT -->
+  <footer id="contact">
+    <div class="contact-layout">
+      <div class="contact-info">
+        <div class="contact-logo">Cute <span>Fashion</span></div>
+        <p class="contact-desc">Precision stitching, personal style. We bring your vision to life — one perfect fit at a
+          time.</p>
+        <div class="contact-detail">
+          <div class="contact-item"><span>📍</span><span>Attur, Salem, Tamil Nadu</span></div>
+          <div class="contact-item"><span>📞</span><span>+91 99524 71853</span></div>
+          <div class="contact-item"><span>✉</span><span>thecutefashionboutique@gmail.com</span></div>
+          <div class="contact-item"><span>🕐</span><span>Mon – Sat: 10am – 8pm</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Collections</h4>
+            <a href="#catalog"
+              onclick="filterCatalog('kurtis', document.querySelector('.filter-tab:nth-child(2)'))">Designer Kurtis</a>
+            <a href="#catalog"
+              onclick="filterCatalog('salwar', document.querySelector('.filter-tab:nth-child(4)'))">Salwar Suits</a>
+            <a href="#catalog" onclick="filterCatalog('maxi', document.querySelector('.filter-tab:nth-child(3)'))">Maxi
+              Dresses</a>
+            <a href="#readymade">Peplum Tops</a>
+            <a href="#catalog">Bridal Lehenga</a>
+            <a href="#catalog">Ethnic &amp; Festive</a>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <a href="#order">Custom Stitching</a>
+            <a href="#readymade">Ready to Wear</a>
+            <a href="#order">Bridal Stitching</a>
+            <a href="#order">Blouse Stitching</a>
+            <a href="#order">Alterations &amp; Fittings</a>
+            <a href="#measurements">Fit &amp; Size Guide</a>
+          </div>
+          <div class="footer-col">
+            <h4>Info</h4>
+            <a href="#hero">About Us</a>
+            <a href="#process">How It Works</a>
+            <a href="#measurements">Measurement Guide</a>
+            <a href="#order">Delivery &amp; Timelines</a>
+            <a href="#contact">Find Us</a>
+            <a href="mailto:thecutefashionboutique@gmail.com">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2006 Cute Fashion · All Rights Reserved</span>
+
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
