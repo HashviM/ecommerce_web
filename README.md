@@ -5,11 +5,6 @@ This project focuses on elegant UI design, service-based workflow, and fashion c
 
 ---
 
-## 🌐 Live Preview
-(Will add GitHub Pages link later)
-
----
-
 ## ✨ Features
 
 - Custom tailoring design catalog (Salwar, Kurti, Maxi, Ready-to-Wear)
